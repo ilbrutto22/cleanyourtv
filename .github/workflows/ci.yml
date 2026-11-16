@@ -79,3 +79,16 @@ jobs:
           path: launcher/app/build/outputs/apk/release/app-release.apk
           if-no-files-found: error
           retention-days: 14
+      - name: Build Sleep Timer APK
+        working-directory: addons/sleep-timer
+        run: |
+          chmod +x gradlew
+          ./gradlew --no-daemon assembleRelease
+
+      - name: Downloadable Sleep Timer APK
+        uses: actions/upload-artifact@v4
+        with:
+          name: cleanyourtv-sleep-timer-apk
+          path: addons/sleep-timer/app/build/outputs/apk/release/app-release.apk
+          if-no-files-found: error
+          retention-days: 14
